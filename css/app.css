@@ -61,3 +61,113 @@ a {
   text-decoration: none;
 }
 */
+
+.site {
+  flex-direction:row;
+  align-items:stretch;
+  height: 100%;
+}
+.site__main {
+  flex-grow:7;
+  flex-basis:0;
+  align-self:stretch;
+
+  /*其中的子元素 左右布局*/
+  flex-direction:row;
+  align-items:stretch;
+  height: 100%;
+}
+.site__right-sidebar {
+  flex-grow:3;
+  flex-basis:0;
+  align-self:stretch;
+
+  /*其中的子元素 上下布局*/
+  flex-direction:column;
+}
+/*60/40（采用大的侧边栏以适应更窄的屏幕）*/
+@media (max-width:600px){
+  .site__main {
+    flex-grow:6;
+  }
+  .site__right-sidebar {
+    flex-grow:4;
+  }
+
+}
+/*80/20采用小的侧边栏以适应更宽的屏幕*/
+@media (min-width:1300px){
+  .site__main{
+    flex-grow:8;
+  }
+  .site__right-sidebar{
+    flex-grow:2;
+  }
+}
+
+.site__left-sidebar{
+  position: fixed;/*固定侧边栏，去掉滚动条*/
+  flex-basis:auto;
+  flex-grow:0;
+  background-color: rgba(255,0,0,0.3);
+  
+  /*固定宽度，不会自动换行
+  1. 有指定宽高用指定值  
+  2. 是否可以计算出隐形的指定值 （
+    比如 left 和 right 都有，就可以计算出 width）
+  3. 都没有的话容器应该适应 content （避免断行）
+  4. 考虑 max-width/max-height/min-width/min-height 的设定
+  */
+  width:170px;
+  height: 100%;
+  padding:50px 20px 0 20px;
+}
+
+.site__content{
+  flex-basis:0;
+  flex-grow:1;
+  background-color: rgba(0,255,0,0.3);
+
+  margin-left: 170px;/*通过增加 margin 来保留侧边栏的位置*/
+}
+.cart{
+  flex-basis:0;
+  flex-grow:1;
+  background-color: rgba(255,0,0,0.3);
+
+
+  overflow:scroll;
+
+  /*预留购物车标题高度*/
+  padding-top: 33px;
+}
+.checkout{
+  flex-basis:auto;
+  flex-grow:0;
+  background-color: rgba(0,255,0,0.3);
+}
+
+.products{
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+.product {
+  width: 50%;
+  height: 250px;
+}
+
+.cart-item {
+  height: 150px;
+  margin-bottom: 20px;
+  background: rgba(0,255,0,0.3);
+}
+
+.checkout {
+  height: 300px;
+  background: rgba(0,0,255,0.3);
+}
+
+.cart__title{
+  position: fixed;/*固定购物车标题*/
+  top: 0px;
+}
